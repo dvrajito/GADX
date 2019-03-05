@@ -1,0 +1,57 @@
+# Genetic algorithms settings for the GADV project
+# A line starting with # is a comment and is ignored.
+# Also parts of lines starting from # are ignored
+# sizes
+individual size
+40
+population size
+50
+generation number
+500
+# genetic operations settings
+crossover form
+0  # 1-Point crossover
+crossover sites
+1
+diss form  # irrelevant if crossover <= 2
+1
+combined form  #irrelevant if crossover <= 3
+1
+swap probability # irrelevant if crossover != 2
+0.3
+encode
+0  # no encoding
+probability of crossover
+0.9
+probability of mutation
+0.01
+reproduction form
+2  # monotone
+# evaluation settings
+evaluation form
+1
+function number
+1
+var number
+2
+transformation number
+0  # no transformation
+problem file
+D:/develop/GAD_traj/Problems/HC/hc150dv.txt
+superior limit
+500.000000
+inferior limit
+10.000000
+history
+0  # not the keeping history
+result file
+D:/develop/GAD_traj/Results/testF1.txt
+history file
+D:/develop/GAD_traj/histTry.txt
+random seed
+249
+number of trials
+5
+number of reports
+10
+
