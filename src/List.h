@@ -43,7 +43,7 @@ public:
     ~List();
 
     // Delete everything in the list
-    void List::Empty();
+    void Empty();
 
     // Converts the list to Boolean. It returns true if the list is not
     // empty, and false if it is.

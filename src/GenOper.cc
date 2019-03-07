@@ -19,7 +19,6 @@ using namespace std;
 #include "General.h"
 #include "GenOper.h"
 #include "EvalInfo.h"
-#include "LinesGraph.h"
 
 const int nrCross = 4; // number of crossover operators in the mix
 
@@ -30,8 +29,9 @@ int *fitArray = NULL, fitCount = 0;
 
 /////////////////////////////// Mutation /////////////////////////////////
 
-// Mutation performed on the individual. For each gene, a mutation 0->1 or 1->0
-// is performed with a probability given by the probMut parameter in the settings.
+// Mutation performed on the individual. For each gene, a mutation
+// 0->1 or 1->0 is performed with a probability given by the probMut
+// parameter in the settings.
 void Mutation(Individual *anInd)
 {
     int locus, choice;
@@ -298,7 +298,8 @@ void ChangeMixExploit()
     crossMix[1] += rand() % 5;
 }
 
-// Modify the crossover mix based on the difference between the old and new fitness.
+// Modify the crossover mix based on the difference between the old
+// and new fitness.
 void AdaptCross(double homogen, double oldf, double newf)
 {
     double fdiff = 1;

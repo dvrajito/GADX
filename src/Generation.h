@@ -1,4 +1,4 @@
-/*****************************************************************************
+/***************************************************************************
 
    Project: GADX, a C++ implementation of genetic algorithms
    License: Creative Commons, Attribution
@@ -8,7 +8,7 @@
 
    A class handling the generation.
 
-******************************************************************************/
+****************************************************************************/
 
 #ifndef Generation_h
 #define Generation_h
@@ -30,25 +30,28 @@ public:
     Individual **population;
     double *fitValues;
 
-    ///////////////////////////// Constructors ////////////////////////////////////
+    ///////////////////////////// Constructors /////////////////////////////
 
-    // Constructor with value for size, genetic settings object, randomizing option,
-    // and initial value for the genes
-    Generation(int genSize, GenInfo *&anInfo, RandIndType randomOpt = setValue, short val = 0);
+    // Constructor with value for size, genetic settings object,
+    // randomizing option, and initial value for the genes
+    Generation(int genSize, GenInfo *&anInfo, 
+               RandIndType randomOpt = setValue, short val = 0);
 
     // Copy constructor
     Generation(Generation *&data);
 
-    ////////////// Init functions corresponding to each constructor ////////////////
+    //////////// Init functions corresponding to each constructor //////////
 
     // Initialize with genetic settings object, randomizing option, 
     // and intial value for the genes
-    void Init(GenInfo *&anInfo, RandIndType randomOpt = setValue, short val = 0);
+    void Init(GenInfo *&anInfo, RandIndType randomOpt = setValue, 
+              short val = 0);
 
     // Copy init
     void Init(Generation *&data);
 
-    // Reset all the individuals in the population without reallocating the memory
+    // Reset all the individuals in the population without
+    // reallocating the memory
     void ReInit(RandIndType randomOpt = setValue, short val = 0);
 
     // Destructor
@@ -79,9 +82,9 @@ public:
     void FPrint(FILE *aFile, char *message);
 
     // Output to a file starting with a given message
-    void Generation::FPrint(ofstream &fout, char *message);
+    void FPrint(ofstream &fout, char *message);
 
-    ////////////////////////////// Genetic operations ////////////////////////////
+    //////////////////////////// Genetic operations ///////////////////////
 
     // Sums the fitness of all the chromosomes 
     double FitnessSum();
@@ -115,9 +118,9 @@ public:
     // Returns the index of the second parent (the mate).
     int Mate(int parent1, double fitSum);
 
-    // Find a mate for parent1 that is different from it. Needs the total fitness 
-    // sum in the population. Returns the index of the second parent (the mate).
-    // Makes 5 attempts to find a different mate.
+    // Find a mate for parent1 that is different from it. Needs the
+    // total fitness sum in the population. Returns the index of the
+    // second parent (the mate). Makes 5 attempts to find a different mate.
     int MateDiff(int parent1, double fitSum);
 
     // Create two children from two parents using crossover and mutation

@@ -25,11 +25,12 @@ using namespace std;
 extern RunInfo *aRunInfo;
 extern ofstream resFile, histFile;
 
-///////////////////////////// Constructors ////////////////////////////////////
+/////////////////////////// Constructors ///////////////////////////////////
 
-// Constructor with value for size, genetic settings object, randomizing option,
-// and initial value for the genes
-Generation::Generation(int genSize, GenInfo *&anInfo, RandIndType randomOpt, short val)
+// Constructor with value for size, genetic settings object,
+// randomizing option, and initial value for the genes
+Generation::Generation(int genSize, GenInfo *&anInfo, RandIndType randomOpt, 
+                       short val)
     : decoded1(NULL), decoded2(NULL), dchild1(NULL), dchild2(NULL),
     sameSex(0), diffSex(0), storeGen(NULL), popRadius(0), sorted(1)
 {
@@ -52,10 +53,10 @@ Generation::Generation(Generation *&data)
     Init(data);
 }
 
-////////////// Init functions corresponding to each constructor ////////////////
+////////////// Init functions corresponding to each constructor /////////////
 
-// Initialize with genetic settings object, randomizing option, 
-// and intial value for the genes
+// Initialize with genetic settings object, randomizing option, and
+// intial value for the genes
 void Generation::Init(GenInfo *&anInfo, RandIndType randomOpt, short val)
 {
     int size = (popSize / 2.0 + 0.5) * 2;
@@ -78,7 +79,8 @@ void Generation::Init(Generation *&data)
     }
 }
 
-// Reset all the individuals in the population without reallocating the memory
+// Reset all the individuals in the population without reallocating
+// the memory
 void Generation::ReInit(RandIndType randomOpt, short val)
 {
     int size = (popSize / 2.0 + 0.5) * 2;
@@ -116,9 +118,9 @@ void Generation::SwapInd(int i, int j)
     population[j] = buffInd;
 }
 
-// Sort the population by the fitness value using a linear
-// insertion sort. We assume the population is not large
-// enough for a more efficient sort.
+// Sort the population by the fitness value using a linear insertion
+// sort. We assume the population is not large enough for a more
+// efficient sort.
 void Generation::Sort()
 {
     int i, j;
@@ -128,8 +130,8 @@ void Generation::Sort()
             SwapInd(j, j-1);
 }
 
-// Find the chromosomes of minimum and maximum fitness and 
-// moves them to the first and last positions
+// Find the chromosomes of minimum and maximum fitness and moves them
+// to the first and last positions
 void Generation::MinMax()
 {
     int min = 0, max = 0;
@@ -152,8 +154,8 @@ void Generation::MinMax()
     }
 }
 
-// A measure of how much the population has converged already, or
-// how much diversity we still have in the population.
+// A measure of how much the population has converged already, or how
+// much diversity we still have in the population.
 double Generation::Converge()
 {
     int i;
@@ -221,7 +223,7 @@ void Generation::FPrint(ofstream &fout, char *message)
     }
 }
 
-////////////////////////////// Genetic operations ////////////////////////////
+////////////////////////////// Genetic operations //////////////////////////
 
 // Sums the fitness of all the chromosomes 
 double Generation::FitnessSum()
@@ -250,9 +252,9 @@ double Generation::FitnessSum(int start, int end)
 }
 
 // Fitness-proportionate selection where the individual is selected
-// from a radius around a given position. If radius is 0, then the 
-// percentage is used for the selection instead.
-// Returns the index of the selected chromosome.
+// from a radius around a given position. If radius is 0, then the
+// percentage is used for the selection instead.  Returns the index of
+// the selected chromosome.
 int Generation::RouletWheel(int position)
 {
     int which;
@@ -298,7 +300,8 @@ int Generation::RouletWheel(double totalSum)
 }
 
 // Counts the occurrence of each sex type in the population and prints
-// it out. Then returns the sex that is most present in the population. 
+// it out. Then returns the sex that is most present in the
+// population.
 int Generation::DominateSex()
 {
     int count[4] = { 0, 0, 0, 0 };
@@ -319,8 +322,8 @@ int Generation::DominateSex()
     return which;
 }
 
-// Find a mate for parent1. Needs the total fitness sum in the population. 
-// Returns the index of the second parent (the mate).
+// Find a mate for parent1. Needs the total fitness sum in the
+// population.  Returns the index of the second parent (the mate).
 int Generation::Mate(int parent1, double fitSum)
 {
     int found = 0, trying = 0;
@@ -341,7 +344,8 @@ int Generation::Mate(int parent1, double fitSum)
             if (res->sex == mixMate) // mixMate can mate with anyone but itself
                 found = 1;
             else if (res->sex != part->sex) // the others can mate only with
-                found = 1;                  // someone of a different sex than itself
+                found = 1;                  // someone of a different
+                                            // sex than itself
             // If we have been unsuccessful enough times:
             else if ((trying > matingPopPercent*popSize) || 
                      (trying > matingTries)) {
@@ -356,9 +360,9 @@ int Generation::Mate(int parent1, double fitSum)
     return which;
 }
 
-// Find a mate for parent1 that is different from it. Needs the total fitness 
-// sum in the population. Returns the index of the second parent (the mate).
-// Makes 5 attempts to find a different mate.
+// Find a mate for parent1 that is different from it. Needs the total
+// fitness sum in the population. Returns the index of the second
+// parent (the mate).  Makes 5 attempts to find a different mate.
 int Generation::MateDiff(int parent1, double fitSum)
 {
     double difference = 0.0, newDiff;
@@ -416,7 +420,8 @@ void Generation::Breed(Individual *&parent1, Individual *&parent2,
 {
     // Apply crossover to the parents to build the children,
     // then apply mutation to the two children. 
-    if (parent1->indInfo->encode) { // decode the parents and ecode the children if needed
+    if (parent1->indInfo->encode) { // decode the parents and ecode
+                                    // the children if needed
         Decode(parent1, parent2, child1, child2);
         Crossover(decoded1, decoded2, dchild1, dchild2, aCrossover);
         Mutation(dchild1);
@@ -460,9 +465,11 @@ Generation *Generation::Reproduce(CrossMethod *&aCrossover,
     // select size/2 pairs of parents to create children from 
     // by crossover or cloning.
     fitSum = FitnessSum();
-    for (i = 0; i < 2*(genSize/2); i += 2) {// in case the reproduction is elitist                       
+    for (i = 0; i < 2*(genSize/2); i += 2) {// in case the
+                                            // reproduction is elitist
         p1 = RouletWheel(fitSum);
-        parent1 = population[p1]; // select the first parent based on the fitness
+        parent1 = population[p1]; // select the first parent based on
+                                  // the fitness
         if (aRepForm < sexuate) { // select the second parent 
             if (popRadius)
                 p2 = RouletWheel(p1);
@@ -481,10 +488,10 @@ Generation *Generation::Reproduce(CrossMethod *&aCrossover,
         Breed(parent1, parent2, child1, child2, aCrossover, aRepForm);
     }
 
-    // If the reproduction is elitist, copy the last individual (of best fitness) from 
-    // the old generation to the new one.
+    // If the reproduction is elitist, copy the last individual (of
+    // best fitness) from the old generation to the new one.
     if (aRepForm == elitist)
-        newGen->population[genSize - 1] = new Individual(population[genSize - 1]);
+        newGen->population[genSize-1] = new Individual(population[genSize-1]);
 
     // Evaluate the fitness of the new population 
     EvalGen(newGen, anEval);
@@ -494,15 +501,17 @@ Generation *Generation::Reproduce(CrossMethod *&aCrossover,
         aCrossover->combForm == adaptCmb)
         ReadaptCross(newGen->fitValues, genSize);
 
-    // Sort the population of just move the worst to position 0 and the best to the last
+    // Sort the population of just move the worst to position 0 and
+    // the best to the last
     if (sorted)
         newGen->Sort();
     else
         newGen->MinMax();
 
-    // If the reproduction is monotonous, compare the best individual from the old generation
-    // with the best in the new one. If the old one was better, replace the worst individual
-    // in the new generation with the best in the old and re-sort. 
+    // If the reproduction is monotonous, compare the best individual
+    // from the old generation with the best in the new one. If the
+    // old one was better, replace the worst individual in the new
+    // generation with the best in the old and re-sort.
     if (aRepForm >= monotone)
         if (newGen->fitValues[genSize - 1] < fitValues[genSize - 1]) {
             newGen->population[0]->Init(population[genSize - 1]);
@@ -532,16 +541,19 @@ void Generation::GARun(RunInfo *&aRInfo, EvalInfo *&aEInfo)
     if (aRInfo->aRForm == diverse)
         gendStat.open(statFile, ios::app);
 
-    // if we choose an elitist reproduction where we keep the best chromosome
-    // from the old generation if we don't find anything better,
-    // then we need one more space to conserve this chromosome.
+    // if we choose an elitist reproduction where we keep the best
+    // chromosome from the old generation if we don't find anything
+    // better, then we need one more space to conserve this
+    // chromosome.
     if (aRInfo->aRForm == elitist) {
         oldGen->popSize += 1;
-        realloc(oldGen->fitValues, oldGen->popSize * sizeof(double));
+        oldGen->fitValues = (double *)realloc(oldGen->fitValues, 
+                                    oldGen->popSize * sizeof(double));
         oldGen->fitValues[oldGen->popSize - 1] = 0;
     }
 
-    // Rebuild the new generation from the old for the given number of generations
+    // Rebuild the new generation from the old for the given number of
+    // generations
     for (i = 0; i < aRInfo->genNumber; i++) {
         aRInfo->theCross->RoundRobin(i);
 
@@ -570,14 +582,15 @@ void Generation::GARun(RunInfo *&aRInfo, EvalInfo *&aEInfo)
             converge = i;
             if (aRInfo->history) {
                 histFile << converge << "\t" << lastFitness << endl;
-                oldGen->population[oldGen->popSize - 1]->FPrint(histFile, NULL);
+                oldGen->population[oldGen->popSize-1]->FPrint(histFile, NULL);
             }
         }
     }
 
     // Output the results
     aRInfo->theCross->theCrossover = (CrossForm)saveCross;
-    resFile << endl << "Last best fitness:\t" << newGen->fitValues[newGen->popSize - 1] << endl;
+    resFile << endl << "Last best fitness:\t" 
+            << newGen->fitValues[newGen->popSize - 1] << endl;
     resFile << "Last change generation:\t" << converge << endl;
     resFile << "Convergence rate:\t" << newGen->Converge() << endl;
     if (aRInfo->aRForm == diverse) {

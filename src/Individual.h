@@ -36,7 +36,8 @@ public:
 
     // Constructor with settings, an option to randomize or not, 
     // and an initial value for the genes.
-    Individual(GenInfo *anInfo, RandIndType randomOpt = setValue, short val = 0);
+    Individual(GenInfo *anInfo, RandIndType randomOpt = setValue, 
+               short val = 0);
 
     // Copy constructor with an option to decode it from another individual
     Individual(Individual *anInd, short decode = 0);
@@ -74,17 +75,19 @@ public:
     double diff_linear(Individual *data);
 
     // Measure for the difference between the target individual and data.
-    // It adds (size-index-1) for all the indexes where the genes are different 
-    // and and divides by size*(size-1)/2, which is the sum of all the indexes.
+    // It adds (size-index-1) for all the indexes where the genes are
+    // different and and divides by size*(size-1)/2, which is the sum
+    // of all the indexes.
     double diff_linear_back(Individual *data);
 
-    // Measure for the difference between the target individual and data based
-    // on a sampling rate. It partitions the individual in a 1/rate intervals, 
-    // and selects a random index in each interval to see if the genes are 
-    // equal. Counts the different genes found this way and divides by the size.  
+    // Measure for the difference between the target individual and
+    // data based on a sampling rate. It partitions the individual in
+    // a 1/rate intervals, and selects a random index in each interval
+    // to see if the genes are equal. Counts the different genes found
+    // this way and divides by the size.
     double diff_rand(Individual *data, double rate);
 
-    ////////////////////////////////// Output //////////////////////////////////
+    /////////////////////////////// Output ////////////////////////////////
 
     // Output to the console with an explanation message
     void Print(char *name);
@@ -93,9 +96,9 @@ public:
     void FPrint(FILE *aFile, char *name);
 
     // Output to a file with an explanation message
-    void Individual::FPrint(ofstream &aFile, char *name);
+    void FPrint(ofstream &aFile, char *name);
 
-    //////////////////////////////// Accessors //////////////////////////////////
+    ///////////////////////////// Accessors ////////////////////////////////
 
     // The size comes from the info attribute, so we only store it one for 
     // the entire generation.
@@ -104,16 +107,18 @@ public:
     // Start index for the genes, if we ever decide it's not 0.
     int GenStart();
 
-    // Genetic operator: determine the sex of the child based on the parents and on
-    // the reproduction form. If the reproduction is sexuate, the child receives
-    // a random parent's sex. If it's sexBinary, then it receives a random male or
-    // female sex. Otherwise it's mixMate.
-    void DetermineSex(Individual *&parent1, Individual *&parent2, RepForm aRepForm);
+    // Genetic operator: determine the sex of the child based on the
+    // parents and on the reproduction form. If the reproduction is
+    // sexuate, the child receives a random parent's sex. If it's
+    // sexBinary, then it receives a random male or female
+    // sex. Otherwise it's mixMate.
+    void DetermineSex(Individual *&parent1, Individual *&parent2, 
+                      RepForm aRepForm);
 
-    // Determine the sex of the individual in the initial population based on 
-    // the reproduction form. If the reproduction is sexuate, the individual     
-    // receives a random sex type out of the 4. If it's sexBinary, the individual
-    // is randomly either male or female. 
+    // Determine the sex of the individual in the initial population
+    // based on the reproduction form. If the reproduction is sexuate,
+    // the individual receives a random sex type out of the 4. If it's
+    // sexBinary, the individual is randomly either male or female.
     void DetermineSex(RepForm aRepForm);
 };
 

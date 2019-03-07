@@ -27,7 +27,7 @@ types_sources = General.cc \
 evaluation_sources = GenEval.cc	\
 					EvalBool.cc \
 					EvalReal.cc \
-					PyCommunicate.cc
+					SettingFile.cc
 
 operation_sources = GenOper.cc
 
