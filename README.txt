@@ -43,10 +43,12 @@ recognized by g++ by default. If you use another compiler than g++, change the
 value of the variable CXX in the Makefile. This project doesn't have any other
 special dependencies.
 
-3. If you compile on Linux, comment out the constant M_PI in General.h and the
-macro _CRT_SECURE_NO_WARNINGS in the same file.
+3. If you compile on Linux, comment out the constant M_PI in General.h.
 
-4. After this, you should be able to simply compile the project the usual way.
+4. If you compile in Visual Studio, add the macro _CRT_SECURE_NO_WARNINGS to 
+the project properties under C/C++ - Preprocessor - Definitions. 
+
+5. After this, you should be able to simply compile the project the usual way.
 If you use the Makefile, run the command make from the project folder. The
 object files will be created in the folder lib and the executable, called GAD,
 will be found in the folder bin of the project folder.

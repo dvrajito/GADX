@@ -1,4 +1,4 @@
-# Genetic algorithms settings for the GADV project
+# Genetic algorithms settings for the GADX project
 # A line starting with # is a comment and is ignored.
 # Also parts of lines starting from # are ignored
 # sizes
@@ -37,7 +37,7 @@ var number
 transformation number
 0  # no transformation
 problem file
-D:/develop/GAD_traj/Problems/HC/hc150dv.txt
+C:/Users/Dana/Documents/GitHub/GADX/Problems/HC/hc150dv.txt
 superior limit
 500.000000
 inferior limit
@@ -45,9 +45,9 @@ inferior limit
 history
 0  # not the keeping history
 result file
-D:/develop/GAD_traj/Results/testF1.txt
+C:/Users/Dana/Documents/GitHub/GADX/Results/testF1.txt
 history file
-D:/develop/GAD_traj/histTry.txt
+C:/Users/Dana/Documents/GitHub/GADX/histTry.txt
 random seed
 249
 number of trials

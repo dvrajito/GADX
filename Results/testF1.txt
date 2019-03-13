@@ -1,0 +1,31 @@
+random seed	population size	individual size	probCross	probMut	generation number
+249		50		40		0.9	0.01	500
+
+crossover form = 1-point
+Best fitness:
+422456	499955	499988	499998	499998	499999	499999	499999	499999	499999	
+Last best fitness:	499999
+Last change generation:	210
+Convergence rate:	0.975
+
+488101	499501	499986	499993	499996	499996	499996	499996	499998	499999	
+Last best fitness:	499999
+Last change generation:	444
+Convergence rate:	0.875
+
+429179	499200	499938	499961	499995	499995	499999	499999	499999	499999	
+Last best fitness:	499999
+Last change generation:	268
+Convergence rate:	0.975
+
+419513	499172	499889	499981	499998	499998	499998	499998	499998	499998	
+Last best fitness:	499998
+Last change generation:	267
+Convergence rate:	0.825
+
+404214	499901	499971	499986	499988	499992	499997	499999	499999	499999	
+Last best fitness:	499999
+Last change generation:	309
+Convergence rate:	0.925
+
+

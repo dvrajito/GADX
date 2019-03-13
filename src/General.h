@@ -18,7 +18,7 @@
 #include <fstream>
 using namespace std;
 
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS // Add to the project properties - Preprocessor
 
 const int  OPT_NR = 25;         // number of settings in the file
 const int randPrecision = 1000; // for the RealRand function
@@ -47,8 +47,8 @@ const int TRY_NR = 5;  // Number of potential mates to consider if the
 
 const double M_PI = 3.14159265359; // Comment out on Linux.
 
-#define FILE_ROOT "D:/develop/GAD_traj"
-#define statFile FILE_ROOT"/data/gender_stat.txt"
+#define FILE_ROOT "C:/Users/Dana/Documents/GitHub/GADX"
+#define statFile FILE_ROOT"/Results/gender_stat.txt"
 #define settingFile FILE_ROOT"/GAPrefs.txt"
 
 // Skip a line from a file
