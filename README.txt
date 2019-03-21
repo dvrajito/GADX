@@ -1,5 +1,5 @@
 ===============================================================================
-||  Project: GADV                                                            ||
+||  Project: GADX                                                            ||
 ||  Author: Dana Vrajitoru                                                   ||
 ||  Creative Commons, Attribution                                            ||
 ||  Updated: March 2019                                                      ||
