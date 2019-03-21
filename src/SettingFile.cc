@@ -1,6 +1,6 @@
-/********************************************************
+/***************************************************************
 
-   Project: GAD trajectory
+   Project: GADX, a C++ implementation of genetic algorithms
    Author:  Dana Vrajitoru
    License: Creative Commons, Attribution
    File:    SettingFile.cc
@@ -8,27 +8,19 @@
 
    Reading the information from the setting file.
 
-*********************************************************/
+****************************************************************/
 
-//#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <fstream>
 #include <iostream>
 using namespace std;
-#include "GenTypes.h"
-#include "GenInfo.h"
-#include "RunInfo.h"
-#include "EvalInfo.h"
 #include "General.h"
 #include "EvalReal.h"
 #include "GenEval.h"
 #include "EvalBool.h"
 #include "SettingFile.h"
-
-extern GenInfo *aGenInfo;
-extern RunInfo *aRunInfo;
-extern EvalInfo *anEvalInfo;
+#include "GAManager.h"
 
 // Read the file "GAPrefs.txt" and return it as a "dictionary"
 // which is an array of strings, explanation followed by value.
@@ -64,15 +56,15 @@ char **ReadDictionary()
     return result;
 }
 
-// Intialize the settings of the genetic algorithm from 
+// Initialize the settings of the genetic algorithm from 
 // the settings file created from the Python interface.
 void InitGA()
 {
     char **theDict = ReadDictionary();
-    aGenInfo = new GenInfo(theDict);
-    aGenInfo->Print();
-    aRunInfo = new RunInfo(theDict);
-    aRunInfo->Print();
-    anEvalInfo = new EvalInfo(theDict);
-    anEvalInfo->Print();
+    GAManager::aGenInfo = new GenInfo(theDict);
+    GAManager::aGenInfo->Print();
+    GAManager::aRunInfo = new RunInfo(theDict);
+    GAManager::aRunInfo->Print();
+    GAManager::anEvalInfo = new EvalInfo(theDict);
+    GAManager::anEvalInfo->Print();
 }

@@ -29,7 +29,7 @@ evaluation_sources = GenEval.cc	\
 					EvalReal.cc \
 					SettingFile.cc
 
-operation_sources = GenOper.cc
+operation_sources = GenOper.cc GAManager.cc
 
 raw_sources = $(types_sources) $(evaluation_sources) $(operation_sources) 
 

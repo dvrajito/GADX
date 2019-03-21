@@ -1,6 +1,6 @@
-/********************************************************
+/***************************************************************
 
-   Project: GAD trajectory
+   Project: GADX, a C++ implementation of genetic algorithms
    License: Creative Commons, Attribution
    Author:  Dana Vrajitoru
    File:    SettingFile.h
@@ -8,7 +8,7 @@
 
    Reading the information from the setting file.
 
-*********************************************************/
+****************************************************************/
 
 #ifndef SettingFile_h
 #define SettingFile_h
@@ -17,7 +17,7 @@
 // which is an array of strings, explanation followed by value.
 char **ReadDictionary();
 
-// Intialize the settings of the genetic algorithm from 
+// Initialize the settings of the genetic algorithm from 
 // the settings file created from the Python interface.
 void InitGA();
 

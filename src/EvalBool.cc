@@ -20,10 +20,10 @@ using namespace std;
 #include "GenTypes.h"
 #include "EvalBool.h"
 #include "SATexpr.h"
+#include "GAManager.h"
 
 /************************ SAT *********************************/
 
-SATexpr *globalSAT = NULL;
 int decep[8] = { 28, 26, 22, 0, 14, 0, 0, 30 };
 int myDecep1[8] = { 22, 0, 28, 26, 0, 30, 14, 0 };
 int myDecep2[8] = { 0, 14, 30, 0, 26, 28, 0, 22 };
@@ -45,15 +45,15 @@ double MyPow(double aReal, double aPower)
 // Read the global SAT expression from a file
 void ReadSATexpr(char *fileName)
 {
-    globalSAT = new SATexpr(fileName);
+    GAManager::globalSAT = new SATexpr(fileName);
 }
 
 // Delete the global SAT expression on exit.
 void deleteGlobalSAT()
 {
-    if (globalSAT != NULL) {
-        delete globalSAT;
-        globalSAT = NULL;
+    if (GAManager::globalSAT != NULL) {
+        delete GAManager::globalSAT;
+        GAManager::globalSAT = NULL;
     }
 }
 
@@ -318,7 +318,7 @@ double ChoseBFunct(Individual *anInd, EvalInfo *anEval)
     int fNr = anEval->funcNumber;
 
     if ((fNr > 10) && (fNr < 20))
-        return EvalSAT(anInd, globalSAT, anEval);
+        return EvalSAT(anInd, GAManager::globalSAT, anEval);
     else
         switch (fNr)
         {

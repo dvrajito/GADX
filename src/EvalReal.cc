@@ -4,18 +4,18 @@
    License: Creative Commons, Attribution
    Author:  Dana Vrajitoru
    File:    EvalReal.cc
-   Update:  February 2019
+   Update:  March 2019
 
    Evaluation (fitness) functions for the genetic algorithm with
    any kind of problems involving real numbers.
 
 ********************************************************************/
 
-#include "GenTypes.h"
-#include "EvalReal.h"
 #include <cstdio>
 #include <cmath>
-#include "General.h"
+#include "GenTypes.h"
+#include "EvalReal.h"
+#include "General.h" 
 
 // arg1 to power arg2 
 double power(double arg1, double arg2)
