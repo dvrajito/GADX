@@ -27,7 +27,8 @@ void ReadSATexpr(char *fileName);
 // Delete the global SAT expression on exit.
 void deleteGlobalSAT();
 
-// Entry point for the fitness evaluation when the chromosome has boolean genes
+// Entry point for the fitness evaluation when the chromosome has
+// boolean genes
 double EvalBoolean(Individual *anInd, EvalInfo *anEval);
 
 // Choose the fitness evaluation function based on the settings in the 
@@ -48,7 +49,7 @@ double MultiMax(Individual *anInd);
 // on the decepArr. 
 double Deception(Individual *anInd, int decepArr[8]);
 
-/////////////////////////// SAT Eval /////////////////////////////////////////
+///////////////////////// SAT Eval /////////////////////////////////////////
 
 // Evaluate a SAT expression bassed on the settings in anEval.
 double EvalSAT(Individual *anInd, SATexpr *expr, EvalInfo *anEval);

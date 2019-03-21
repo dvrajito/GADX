@@ -33,7 +33,8 @@ char **ReadDictionary()
 
     // check if the file was properly opened
     if (!finput.good()) {
-        cout << "Could not read the settings file" << endl;
+        cout << "Could not read the settings file: " 
+             << settingFile << endl;
         return NULL;
     }
 
@@ -57,8 +58,8 @@ char **ReadDictionary()
 }
 
 // Initialize the settings of the genetic algorithm from 
-// the settings file created from the Python interface.
-void InitGA()
+// the settings file.
+void InitSettings()
 {
     char **theDict = ReadDictionary();
     GAManager::aGenInfo = new GenInfo(theDict);

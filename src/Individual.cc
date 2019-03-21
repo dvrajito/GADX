@@ -17,12 +17,7 @@
 using namespace std;
 #include "Individual.h"
 #include "EvalInfo.h"
-
-GenInfo *decodeInfo = NULL;
-
-extern EvalInfo *anEvalInfo;
-extern GenInfo *aGenInfo;
-extern RunInfo *aRunInfo;
+#include "GAManager.h"
 
 //////////////////////// Constructors//////////////////////////////
 
@@ -40,6 +35,8 @@ Individual::Individual(GenInfo *anInfo, RandIndType randomOpt, short val)
 // Copy constructor with an option to decode it from another individual
 Individual::Individual(Individual *anInd, short decode)
 {
+    GenInfo *decodeInfo = NULL;
+
     if ((decode) && (anInd->indInfo->encode)) {
         decodeInfo = new GenInfo(anInd->indInfo);
         decodeInfo->encode = 0;
@@ -74,7 +71,7 @@ void Individual::Init(RandIndType randomOpt, short val)
             chromosome[i] = rand() % 2;
         break;
     case limRand: {
-        int limit = int(aGenInfo->supLim);
+        int limit = int(GAManager::aGenInfo->supLim);
         for (i = 0; i < size; i++)
             chromosome[i] = rand() % limit;
         break;
@@ -84,7 +81,7 @@ void Individual::Init(RandIndType randomOpt, short val)
             chromosome[i] = rand() % 256;
         break;
     }
-    DetermineSex(aRunInfo->aRForm); 
+    DetermineSex(GAManager::aRunInfo->aRForm);
 }
 
 // Copy the chromosome from another individual
@@ -122,7 +119,7 @@ void Individual::addAnd(Individual *data)
 // Find the difference with data based on the transformation number
 double Individual::difference(Individual *data)
 {
-    switch (anEvalInfo->transNumber) {
+    switch (GAManager::anEvalInfo->transNumber) {
     case 0:
         return diff(data);
     case 1:

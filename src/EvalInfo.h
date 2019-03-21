@@ -25,7 +25,7 @@ public:
     int funcNumber;
     int transNumber;
     int pointNumber;
-    char *aFileName;
+    char *probFileName;
 
     //////////////////////////// constructors //////////////////////////////
 

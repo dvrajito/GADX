@@ -19,7 +19,6 @@
 #include "Generation.h"
 #include "GenOper.h"
 #include "EvalBool.h"
-#include "interface.h"
 #include "SettingFile.h"
 
 ofstream GAManager::resFile, GAManager::histFile;
@@ -71,9 +70,6 @@ void GAManager::InitialPopulation()
 // Initialize settings and files to run the GA
 void GAManager::GAInit()
 {
-    // make sure we have a road object
-    roadInit();
-
     // Read the settings from a dictionary and initialize the
     // settings storing objects from it.
     InitSettings();
@@ -169,10 +165,12 @@ void GAManager::ExecuteTrialSet()
     aRunInfo->theCross->Print();
     randSeed = aRunInfo->rseed;
     nTrials = aRunInfo->trialNr;
-    resFile << endl << "crossover form = " << aRunInfo->theCross->MethodString()
-        << endl << "Best fitness:";
+    resFile << endl << "crossover form = " 
+            << aRunInfo->theCross->MethodString()
+            << endl << "Best fitness:";
     if (aRunInfo->history)
-        histFile << endl << "crossover form = " << aRunInfo->theCross->MethodString() << endl;
+        histFile << endl << "crossover form = " 
+                 << aRunInfo->theCross->MethodString() << endl;
 
     // Run the GA for the given number of trials
     for (j = 0; j < nTrials; j++) {

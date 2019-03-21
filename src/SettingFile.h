@@ -18,7 +18,7 @@
 char **ReadDictionary();
 
 // Initialize the settings of the genetic algorithm from 
-// the settings file created from the Python interface.
-void InitGA();
+// the settings file.
+void InitSettings();
 
 #endif

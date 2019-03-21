@@ -66,7 +66,7 @@ EvalInfo::EvalInfo(int isReal,
 // desctructor 
 EvalInfo::~EvalInfo()
 {
-    delete aFileName;
+    delete probFileName;
 }
 
 /******************************* Initialize *****************************/
@@ -98,7 +98,7 @@ void EvalInfo::Init(FILE *aFile)
         else if (funcNumber >= 10)
         {
             SkipLine(aFile);
-            fscanf(aFile, "%s", aFileName);
+            fscanf(aFile, "%s", probFileName);
             SkipLine(aFile);
             fscanf(aFile, "%d", &(pointNumber));
         }
@@ -126,7 +126,7 @@ void EvalInfo::Init(ifstream &aFile)
         else if (funcNumber >= 10)
         {
             SkipLine(aFile);
-            aFile >> aFileName;
+            aFile >> probFileName;
             SkipLine(aFile);
             aFile >> pointNumber;
         }
@@ -158,7 +158,7 @@ void EvalInfo::Init(char **aDict)
 void EvalInfo::Init(EvalInfo *data)
 {
     Init(data->realEval, data->funcNumber, data->transNumber,
-         data->pointNumber, data->aFileName);
+         data->pointNumber, data->probFileName);
 }
 
 // Initialize with values for all attributes
@@ -174,10 +174,10 @@ void EvalInfo::Init(int isReal,
     pointNumber = pNbr;
     if ((aName == NULL) || (strlen(aName) == 0) ||
         (aName[0] == ' '))
-        aFileName = NULL;
+        probFileName = NULL;
     else {
-        aFileName = new char[strlen(aName) + 1];
-        strcpy(aFileName, aName);
+        probFileName = new char[strlen(aName) + 1];
+        strcpy(probFileName, aName);
     }
 }
 
@@ -198,8 +198,8 @@ void EvalInfo::ScanEvalInfo()
     }
     else if (funcNumber >= 10) {
         cout << "problem file" << endl;
-        aFileName = new char[50];
-        cin >> aFileName;
+        probFileName = new char[50];
+        cin >> probFileName;
         cout << "p" << endl;
         cin >> pointNumber;
     }
@@ -234,8 +234,8 @@ int EvalInfo::OptionEvalInfo(char anOption)
     case 'n':
     case 'N':
         cout << "problem file" << endl;
-        aFileName = new char[50];
-        cin >> aFileName;
+        probFileName = new char[50];
+        cin >> probFileName;
         break;
     default:
         result = 0;
@@ -275,7 +275,7 @@ void EvalInfo::Print()
         cout << "transformation number = " << transNumber << endl
         << "var number = " << pointNumber << endl;
     else if (funcNumber >= 10)
-        cout << "problem file = " << aFileName << endl
+        cout << "problem file = " << probFileName << endl
         << "p = " << pointNumber << endl;
 }
 
@@ -287,7 +287,7 @@ void EvalInfo::FPrint(FILE *aFile)
     if (realEval)
         fprintf(aFile, "transformation number\n%d\n", transNumber);
     else if (funcNumber > 10)
-        fprintf(aFile, "problem file\n%s\n", aFileName);
+        fprintf(aFile, "problem file\n%s\n", probFileName);
     fprintf(aFile, "var number\n%d\n", pointNumber);
 }
 
@@ -299,7 +299,7 @@ void EvalInfo::FPrint(ofstream &fout)
     if (realEval)
         fout << "transformation number" << endl << transNumber << endl;
     else if (funcNumber > 10)
-        fout << "problem file" << endl << aFileName << endl;
+        fout << "problem file" << endl << probFileName << endl;
     fout << "var number" << endl << pointNumber << endl;
 }
 
