@@ -368,10 +368,14 @@ double EvalReal(Individual *anInd, EvalInfo *anEval)
     n = anInd->indInfo->indSize;
     nLim = anEval->pointNumber;
     if (oldLim != nLim) {
-        if (reals)
+        if (reals) {
             delete[] reals;
-        if (limits)
+            reals = NULL;
+        }
+        if (limits) {
             delete[] limits;
+            limits = NULL;
+        }
     }
     oldLim = nLim;
     if (!reals)
