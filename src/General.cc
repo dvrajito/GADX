@@ -58,3 +58,14 @@ double RealRand(int precision)
 {
     return (double)(rand() % precision) / precision;
 }
+
+// clamp a value to a lower and upper bound
+double clamp(double a, double low, double high)
+{
+    if (a < low)
+        return low;
+    else if (a > high)
+        return high;
+    else
+        return a;
+}

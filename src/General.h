@@ -37,7 +37,7 @@ const int matingTries = 25;    // Number of attempts to find a mate based on the
 
 const float matingPopPercent = 0.75; // Maximum percentage of the population that a
                                      // parent attempts to mate with based on the 
-                                     // reproduction scheme. If unsuccessful, a sex
+                                     // reproduction scheme. If unsuccesful, a sex
                                      // change is made to make the mating possible.
 
 const int TRY_NR = 5;  // Number of potential mates to consider if the
@@ -45,9 +45,9 @@ const int TRY_NR = 5;  // Number of potential mates to consider if the
                        // looking for an individual with different genetic material.
                        // The most different mate out of the 5 is chosen.
 
-const double M_PI = 3.14159265359; // Comment out on Linux.
+//const double M_PI = 3.14159265359; // Comment out on Linux.
 
-#define FILE_ROOT "C:/Users/dvrajito/Documents/GitHub/GADX"
+#define FILE_ROOT "/home/dvrajito/develop/GADX"
 #define statFile FILE_ROOT"/Results/gender_stat.txt"
 #define settingFile FILE_ROOT"/GAPrefs.txt"
 
@@ -64,5 +64,8 @@ void DeleteComment(char *line);
 
 // A random number between 0 and 1 with a given precision
 double RealRand(int precision=0.0001);
+
+// clamp a value to a lower and upper bound
+double clamp(double a, double low, double high);
 
 #endif
