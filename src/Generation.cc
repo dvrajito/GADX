@@ -4,7 +4,7 @@
    License: Creative Commons, Attribution
    Author:  Dana Vrajitoru
    File:    Generation.cc
-   Update:  March 2019
+   Update:  April 2019
 
    A class handling the generation.
 
@@ -282,9 +282,25 @@ int Generation::RouletWheel(int position)
 // Returns the index of the selected chromosome.
 int Generation::RouletWheel(double totalSum)
 {
-    int which;
+    int which, i;
+    double offset = 0, minFit = fitValues[0], maxFit = fitValues[0];
     double choice, sum = 0.0;
 
+    // find the min and max value
+    for (i = 1; i < popSize; i++)
+        if (fitValues[i] < minFit)
+            minFit = fitValues[i];
+        else if (fitValues[i] > maxFit)
+            maxFit = fitValues[i];
+
+    // offset the fitness so that we don't have negative values
+    if (minFit <= 0) 
+    {                
+        offset = -minFit + 0.1*(maxFit - minFit);
+        totalSum += popSize * offset;
+    }
+
+    // now select a chromosome
     choice = RealRand(randPrecision);
     which = 0;
     do {
@@ -516,7 +532,7 @@ Generation *Generation::Reproduce(CrossMethod *&aCrossover,
 // Runs one trial of the genetic algorithm. Entry point function.
 void Generation::GARun(RunInfo *&aRInfo, EvalInfo *&aEInfo)
 {
-    short i, step, converge;
+    short i, step, converge = 0;
     short saveCross = aRInfo->theCross->theCrossover;
     Generation *oldGen, *newGen = NULL, *interm;
     double lastFitness = 0.0;
@@ -555,7 +571,8 @@ void Generation::GARun(RunInfo *&aRInfo, EvalInfo *&aEInfo)
                 gendStat << sameSex << " " << diffSex << "\t";
                 sameSex = diffSex = 0;
             }
-            newGen->DominateSex();
+            if (GAManager::aRunInfo->aRForm > monotone)
+                newGen->DominateSex();
         }
         
         // swap the old and new generation
