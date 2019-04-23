@@ -380,7 +380,7 @@ double EvalReal(Individual *anInd, EvalInfo *anEval)
     oldLim = nLim;
     if (!reals)
         reals = new double[nLim];
-    if (nLim > 1) {
+    if (nLim > 1 && !limits) {
         limits = new int[nLim - 1];
 
         for (i = 1; i < nLim; i++)
