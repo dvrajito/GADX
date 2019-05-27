@@ -191,7 +191,7 @@ void GAManager::ExecuteTrialSet()
 
         // run one trial
         cout << "Trial number " << j << endl;
-        initPop->GARun(aRunInfo, anEvalInfo);
+        initPop->GARun(aRunInfo);
         resFile.close();
         resFile.open(aRunInfo->resFileName, ios::app);
     }

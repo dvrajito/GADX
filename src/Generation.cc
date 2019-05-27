@@ -4,7 +4,7 @@
    License: Creative Commons, Attribution
    Author:  Dana Vrajitoru
    File:    Generation.cc
-   Update:  April 2019
+   Update:  May 2019
 
    A class handling the generation.
 
@@ -62,6 +62,7 @@ void Generation::Init(GenInfo *&anInfo, RandIndType randomOpt, short val)
         population[i] = new Individual(anInfo, randomOpt, val);
         fitValues[i] = 0;
     }
+    Eval();
 }
 
 // Copy init
@@ -85,6 +86,7 @@ void Generation::ReInit(RandIndType randomOpt, short val)
         population[i]->Init(randomOpt, val);
         fitValues[i] = 0;
     }
+    Eval();
 }
 
 // Destructor
@@ -423,6 +425,12 @@ void Generation::Encode(Individual *&parent1, Individual *&parent2,
     EncodeInd(dchild2, child2);
 }
 
+// evaluate the individuals in the population
+void Generation::Eval()
+{
+    EvalGen(this, GAManager::anEvalInfo);
+}
+
 // Create two children from two parents using crossover and mutation
 void Generation::Breed(Individual *&parent1, Individual *&parent2,
                        Individual *&child1, Individual *&child2,
@@ -450,7 +458,6 @@ void Generation::Breed(Individual *&parent1, Individual *&parent2,
 // Create a new generation from the old one stored in the target object
 Generation *Generation::Reproduce(CrossMethod *&aCrossover,
                                   RepForm aRepForm,
-                                  EvalInfo *&anEval,
                                   Generation *&whereGen)
 {
     Generation *newGen;
@@ -501,7 +508,7 @@ Generation *Generation::Reproduce(CrossMethod *&aCrossover,
         newGen->population[genSize - 1] = new Individual(population[genSize - 1]);
 
     // Evaluate the fitness of the new population 
-    EvalGen(newGen, anEval);
+    newGen->Eval();
 
     // Reset the crossover form if we're doing some combination
     if (aCrossover->theCrossover == combineCrs &&
@@ -530,7 +537,7 @@ Generation *Generation::Reproduce(CrossMethod *&aCrossover,
 }
 
 // Runs one trial of the genetic algorithm. Entry point function.
-void Generation::GARun(RunInfo *&aRInfo, EvalInfo *&aEInfo)
+void Generation::GARun(RunInfo *&aRInfo)
 {
     short i, step, converge = 0;
     short saveCross = aRInfo->theCross->theCrossover;
@@ -562,7 +569,7 @@ void Generation::GARun(RunInfo *&aRInfo, EvalInfo *&aEInfo)
 
         // Call the function creating the new generation from the old one
         newGen = oldGen->Reproduce(aRInfo->theCross,
-                                   aRInfo->aRForm, aEInfo, newGen);
+                                   aRInfo->aRForm, newGen);
 
         // every step number of steps write the results to the file
         if ((i != 0) && ((i % step) == 0)) {

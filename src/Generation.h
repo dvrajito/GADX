@@ -122,6 +122,9 @@ public:
     // total fitness sum in the population. Returns the index of the
     // second parent (the mate). Makes 5 attempts to find a different mate.
     int MateDiff(int parent1, double fitSum);
+    
+    // evaluate the individuals in the population
+    void Eval();
 
     // Create two children from two parents using crossover and mutation
     void Breed(Individual *&parent1, Individual *&parent2,
@@ -131,11 +134,10 @@ public:
     // Create a new generation from the old one stored in the target object
     Generation *Reproduce(CrossMethod *&aCrossover,
                           RepForm aRepForm,
-                          EvalInfo *&anEval,
                           Generation *&whereGen);
 
     // Runs one trial of the genetic algorithm. Entry point function.
-    void GARun(RunInfo *&aRInfo, EvalInfo *&aEInfo);
+    void GARun(RunInfo *&aRInfo);
 };
 
 #endif

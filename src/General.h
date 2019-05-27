@@ -4,7 +4,7 @@
    License: Creative Commons, Attribution
    Author:  Dana Vrajitoru
    File:    General.h
-   Updated: March 2019
+   Updated: May 2019
  
    General purpose functions and constants.
 
@@ -45,9 +45,9 @@ const int TRY_NR = 5;  // Number of potential mates to consider if the
                        // looking for an individual with different genetic material.
                        // The most different mate out of the 5 is chosen.
 
-//const double M_PI = 3.14159265359; // Comment out on Linux.
+const double M_PI = 3.14159265359; // Comment out on Linux.
 
-#define FILE_ROOT "/home/dvrajito/develop/GADX"
+#define FILE_ROOT "C:/Users/Dana/Documents/GitHub/GADX"
 #define statFile FILE_ROOT"/Results/gender_stat.txt"
 #define settingFile FILE_ROOT"/GAPrefs.txt"
 
