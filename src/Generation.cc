@@ -295,6 +295,9 @@ int Generation::RouletWheel(double totalSum)
         else if (fitValues[i] > maxFit)
             maxFit = fitValues[i];
 
+    if (minFit == maxFit) // all chromosomes have the same fitness
+        return abs(rand() % popSize); // return a random one
+
     // offset the fitness so that we don't have negative values
     if (minFit <= 0) 
     {                
