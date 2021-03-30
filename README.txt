@@ -2,7 +2,7 @@
 ||  Project: GADX                                                            ||
 ||  Author: Dana Vrajitoru                                                   ||
 ||  Creative Commons, Attribution                                            ||
-||  Updated: March 2019                                                      ||
+||  Updated: March 2021                                                      ||
 ||  User instructions, compilation and execution guide.                      ||
 ===============================================================================
 

@@ -2,7 +2,7 @@
 ## Project GADX, a C++ implementation of genetic algorithms   ##
 ## License: Creative Commons, Attribution                     ##
 ## Author: Dana Vrajitoru                                     ##
-## Updated: March 2019                                        ##
+## Updated: March 2021                                        ##
 ## Makefile                                                   ##
 ################################################################
 
@@ -25,9 +25,9 @@ types_sources = General.cc \
 
 
 evaluation_sources = GenEval.cc	\
-					EvalBool.cc \
-					EvalReal.cc \
-					SettingFile.cc
+					 EvalBool.cc \
+					 EvalReal.cc \
+					 SettingFile.cc
 
 operation_sources = GenOper.cc GAManager.cc
 
